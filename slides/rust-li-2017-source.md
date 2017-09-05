@@ -15,7 +15,7 @@ class: center, middle
 
 ## Why Rust?
 
-* Compiled Language (more about what this means)
+* Low-Level Language (more about what this means)
 * Memory safety without Garbage Collection
 * Pattern Matching & Algebraic Data Types
 * Macro System (WIP)
@@ -23,12 +23,20 @@ class: center, middle
 
 ---
 
-# Compiled Language vs Interpreted Language
+# Low-Level Languages
 
+**Low Level**: You can sort-of imagine how what you type will
+be tranlated to assembly. You *know* the layout of the data.
 
+**High Level**: No idea what will actually run. No idea what the data
+will look like.
 
-```c
-#include <stdio.h>
+---
+C
+
+<div style="-webkit-column-count: 2; -moz-column-count: 2; column-count: 2; -webkit-column-rule: 1px dotted #e0e0e0; -moz-column-rule: 1px dotted #e0e0e0; column-rule: 1px dotted #e0e0e0;">
+    <div style="display: inline-block;">
+        <pre><code class="c">#include <stdio.h>
 
 void doit() {
   int a = 10;
@@ -40,10 +48,10 @@ void doit() {
 int main() {
   doit();
 }
-```
-
-```asm
-_main:                                  ## @main
+</code></pre>
+    </div>
+    <div style="display: inline-block;">
+        <pre><code class="asm">_main:                                  ## @main
 	.cfi_startproc
 ## BB#0:
 	pushq	%rbp
@@ -62,7 +70,9 @@ Lcfi5:
 	popq	%rbp
 	retq
 	.cfi_endproc
-```
+</code></pre>
+    </div>
+</div>
 
 ---
 Rust
@@ -114,3 +124,42 @@ Lcfi2:
 </code></pre>
     </div>
 </div>
+
+---
+Python
+
+```python
+def doit():
+    a = 10
+    b = 2
+    c = a * b
+    print(c)
+
+doit()
+```
+
+<img src="./python-st.png" alt="python" style="width: 80%;"/>
+
+---
+
+# Low-Level Language
+
+* The **Computer** is the interpreter (VM).
+
+* Data types match the computer's types, plus extensions. (Types not
+  *Boxed* by default).
+
+## Why do I care?
+
+* Performance by default.
+* Easier to control data-layout to optimize performance.
+
+---
+
+# Memory safety without Garbage Collection
+
+* There are cases where GC can be *faster* than
+  `malloc/free`. E.g. `free`ing very deeply nested data structures.
+
+* It's more about control. GC makes pauses unpredictable.
+
