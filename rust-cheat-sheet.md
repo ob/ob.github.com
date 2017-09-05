@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title:  "Rust cheat sheet"
 date:   2017-08-28 21:28:49 -0700
 categories: rust
@@ -62,3 +62,25 @@ fn readFile(filename: &str) -> Result<_, io::Error> {
 
 {% endhighlight %}
 
+# Errors
+
+This is mostly for `io::Error`
+
+{% highlight rust %}
+use std::io::{Error, ErrorKind};
+
+// errors can be created from strings
+let custom_error = Error::new(ErrorKind::Other, "oh no!");
+
+// errors can also be created from other errors
+let custom_error2 = Error::new(ErrorKind::Interrupted, custom_error);
+{% endhighlight %}
+
+# Useful Crates
+
+* [hyper-openssl](https://docs.rs/hyper-openssl/0.3.0/hyper_openssl/)
+  is the openssl version of [hyper](https://hyper.rs)
+  
+# Useful Links
+
+[Rust & Servo](https://simrangujral.github.io/Rustls&Servo)
