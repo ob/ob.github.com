@@ -1,0 +1,104 @@
+[Lecture]()https://www.youtube.com/watch?v=ojZbFIQSdl8&feature=youtu.be)
+
+# What's good about types?
+
+* Making illegal states unrepresentable
+* Making illegal behavior result in a type error
+
+# From FP: What is a type?
+
+* The set of values that can inhabit an expression
+  * May be finite of "infinite"
+  * Characterized by cardinality
+* Expressions have types
+  * A program has a type
+  
+- Type cardinality exercises
+- Product types
+- Sum types
+
+- functions -> power types?
+
+# What do algebraic data types buy you?
+
+  - the ability to reason about equality of types
+  - to find equivalent formulations
+    - more natural
+    - more easily understood
+    - more efficient
+  - to identify mismatches between state spaces and the types used to implement them
+  - to elliminate illegal states by making them inexpressible
+
+```cpp
+enum class ConnectionState {
+  DISCONNECTED,
+  CONNECTING,
+  CONNECTED,
+  CONNECTION_INTERRUPTED,
+};
+
+struct Connection {
+  ConnectionState m_connectionState;
+  
+  std::string m_serverAddress;
+  ConnectionId m_id;
+  std::chrono::system_clock::time_point m_connectedTime;
+  std::chrono::milliseconds m_lastPingTime;
+  Timer m_reconnectTimer;
+};
+```
+
+With `variant`
+
+```cpp
+struct Connection {
+  std::string m_connectionAddress;
+  
+  struct Disconnected {};
+  struct Connecting {};
+  struct Connected {
+    ConnectionId m_id;
+    std::chrono::system_clock::time_point m_connectedTime;
+    std::optional<std::chrono::milliseconds> m_lastPingTime;
+  };
+  struct ConnectionInterrupted {
+    std::chrono::system_clock::time_point m_disconnectedTime;
+    Timer m_reconnectTimer;
+  };
+  
+  std::variant<Disconnected,
+               Connecting,
+               Connected,
+               ConnectionInterrupted> m_connection;
+}
+```
+
+# Powerful Idea
+
+We can know what a function does by just looking at the type
+signature.
+
+# Example of catching errors at compile time
+
+```rust
+fn getFormData() -> String;
+fn sanitizeFormData(String) -> String;
+fn executeQuery(String) -> String;
+```
+
+# Total functions
+
+A total function is a function that is defined for all inputs in its
+domain.
+
+# Testing
+
+If your types are right, the tests are greatly reduced. 
+
+> Types scale better than tests.
+
+# More?
+
+* [Effective ML: Making Illegal States Irrepresentable](https://vimeo.com/14313378)
+* [Types vs Tests](https://www.infoq.com/presentations/Types-Tests)
+
