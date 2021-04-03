@@ -10,6 +10,14 @@ This is just a quick and dirty rust cheat sheet.
 * auto-gen TOC:
 {:toc}
 
+# Printing
+
+When printing using `println!()`:
+
+* `{}` uses the `Display` Trait
+* `{:?}` uses the `Debug` Trait
+* `{:#?}` uses the `Debug` Trait but prints the output in multiple lines.
+
 # Command Line Arguments
 
 [Clap](https://github.com/kbknapp/clap-rs) is the way to go.
@@ -76,11 +84,3 @@ let custom_error = Error::new(ErrorKind::Other, "oh no!");
 let custom_error2 = Error::new(ErrorKind::Interrupted, custom_error);
 {% endhighlight %}
 
-# Useful Crates
-
-* [hyper-openssl](https://docs.rs/hyper-openssl/0.3.0/hyper_openssl/)
-  is the openssl version of [hyper](https://hyper.rs)
-  
-# Useful Links
-
-[Rust & Servo](https://simrangujral.github.io/Rustls&Servo)
