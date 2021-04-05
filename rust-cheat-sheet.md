@@ -18,6 +18,12 @@ When printing using `println!()`:
 * `{:?}` uses the `Debug` Trait
 * `{:#?}` uses the `Debug` Trait but prints the output in multiple lines.
 
+# Iterators
+
+* `.iter()` immutable references.
+* `.into_iter()` owned values.
+* `.iter_mut()` mutable references.
+
 # Command Line Arguments
 
 [Clap](https://github.com/kbknapp/clap-rs) is the way to go.
