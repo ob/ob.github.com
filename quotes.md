@@ -12,4 +12,5 @@ permalink: /quotes/
 >
 > -- <cite>Charles Babbage</cite>
 
-
+> Too many people just don't have the sophistication to integrate new information with their beliefs, or even to not integrate it -- to hold multiple conflicting notions in their head at once seems to pain them.
+> -- <cite>Tim Daly, Jr</cite>
