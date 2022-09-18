@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Quotes
+title: Design
 permalink: /design/
 ---
 
